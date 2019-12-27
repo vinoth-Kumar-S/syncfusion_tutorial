@@ -24,21 +24,21 @@ class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-    
-  
-   void _submit () {
-    Navigator.of(context).pushNamed('/CardPage');   
-  }
-  
-    final emailField = TextFormField(
+     
+    void _submit () {     
+        Navigator.of(context).pushNamed('/CardPage');    
+                
+    }         
+    final emailField = TextFormField(      
           obscureText: false,
           style: style,
+          autofocus: true,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
               hintText: "User Name",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-          validator: (val)=> !val.contains('@')?'Invalid Email':null, 
+              validator: (val) => val.isEmpty? 'Please enter User name ' : null,
                
         );
         final passwordField = TextFormField(
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget{
               hintText: "Password",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-          validator: (val)=> val.length<6?'Password Too Short':null,
+          validator: (val) => val.isEmpty? 'Please enter password ' : null,             
           
         );
         final loginButon = Material(
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget{
         title: new Text('Syncfusion Tutorial'),
         backgroundColor: Colors.deepOrange,
       ),
-      body: new Container(
+      body: new Container(               
         child: new Center(
           child: new SingleChildScrollView(
           child: new Column(
@@ -117,25 +117,28 @@ class CardPage extends StatelessWidget{
         child: ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
-              accountName: new Text("Vinoth"),
-              accountEmail: new Text("vinoth.sundaramoorthy@syncfusion.com"),
+              accountName: new Text("GrowthHacking"),
+              accountEmail: new Text("growthhacking@syncfusion.com"),
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage('https://images.app.goo.gl/Sjy8wx5v8bWhMtk5A'),
               ),
             ),
             new ListTile(
+              leading: Image.asset('assets/angular.png'),
               title: new Text("Angular"),
               onTap: (){
-                Navigator.of(context).pushNamed('/CardPage'); 
+                Navigator.of(context).pushNamed('/ContentPage'); 
               },
             ),
             new ListTile(
+              leading: Image.asset('assets/flutter.png'),
               title: new Text("Flutter"),
               onTap: (){
                 Navigator.of(context).pushNamed('/');
               },
             ),
             new ListTile(
+              leading: Image.asset('assets/react.png'),
               title: new Text('React'),
               onTap: (){
                 //Navigate to react page
@@ -170,7 +173,7 @@ class CardPage extends StatelessWidget{
           padding: const EdgeInsets.all(50),
           child: new Column(            
           children: <Widget>[
-            Image.asset('assets/' + platform[index] + '.svg'),
+            Image.asset('assets/' + platform[index].toLowerCase() + '.png'),            
             Text(platform[index], style: new TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold))
           ],),
         ),
@@ -203,7 +206,7 @@ class ContentPage extends StatelessWidget {
             new ListTile(
               title: new Text("Angular"),
               onTap: (){
-                Navigator.of(context).pushNamed('/CardPage'); 
+                Navigator.of(context).pushNamed('/ContentPage'); 
               },
             ),
             new ListTile(
@@ -233,9 +236,29 @@ class ContentPage extends StatelessWidget {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: <Widget>[
+            new ListTile(
+              title: new Text("How to Create Angular Charts Using Syncfusion and Angular CLI"),
+              subtitle: new Text("Learn how easily you can create and configure Angular Charts of Syncfusion using the  ej2-angular-charts package..."),
+              isThreeLine: true,
+              
+            ),
+            new ListTile(
+              title: new Text("All You Need to Know About Angular Chart Types"),
+              subtitle: new Text("Get an overview of the various types of Angular charts available from Syncfusion, with which you can visualize and read any kind of raw data easily...."),
+              isThreeLine: true
+            ),
+            new ListTile(
+              title: new Text("Creating Angular Pie Charts, Pyramid Charts and Funnel Charts"),
+              subtitle: new Text("Learn how easily you can add and customize Syncfusion's Angular pie charts and doughnut charts, pyramid charts...."),
+             isThreeLine: true
+            ),
+            new ListTile(
+              title: new Text("How to Create and Customize Angular Financial Charts"),
+              subtitle: new Text("Learn how easily you can add and customize Syncfusion's financial charts in an Angular application. With the help of..."),
+              isThreeLine: true,
+            )
             
           ],
         ),
