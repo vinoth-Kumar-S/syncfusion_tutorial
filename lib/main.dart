@@ -86,6 +86,7 @@ class HomePage extends StatelessWidget{
       ),
       body: new Container(
         child: new Center(
+          child: new SingleChildScrollView(
           child: new Column(
             children: <Widget>[
             SizedBox(
@@ -108,7 +109,8 @@ class HomePage extends StatelessWidget{
                     ),
           ]
           
-          )
+          ),
+          ),
         ),
       ),
     );
@@ -116,27 +118,35 @@ class HomePage extends StatelessWidget{
 }
 
 class CardPage extends StatelessWidget{
+  final List<String> platform = [ 'Angular', 'Flutter', 'React', 'Vue', 'Xamarin'];
   @override
   Widget build(BuildContext context){
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Home'),
+        title: new Text('Choose Framework'),
         backgroundColor: Colors.deepOrange,
       ),
       body: new Container(
-        child: new Center(
-          child: new Column(
-            children: <Widget>[
-            new IconButton(
-              icon: new Icon(Icons.favorite, color: Colors.red ),
-              onPressed: null,
-            ),
-            new Text('Home')
-          ]
-          )
+        child: new ListView.builder(
+          itemCount: platform.length,
+          itemBuilder: (BuildContext context, int index) => buildPlatformCard(context, index)
         ),
       ),
     );
+  }
+
+  Widget buildPlatformCard(BuildContext context, int index){
+    return new Container(
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(50),
+                  child: Column(
+                  children: <Widget>[
+                    Text(platform[index], style: new TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold))
+                  ],),
+                ),
+              ),
+            );
   }
 }
 
