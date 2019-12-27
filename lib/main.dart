@@ -24,22 +24,9 @@ class HomePage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  //   final scaffoldkey=new GlobalKey<ScaffoldState>();
-  // final formkey=new GlobalKey<FormState>();
-    String _email;
-   String _password;
-  //  void performlogin(){
-  //   final snackbar=new SnackBar(
-  //     content: new Text("Email: $_email, Password: $_password"),);
-  //     scaffoldkey.currentState.showSnackBar(snackbar);
-  // }
+    
+  
    void _submit () {
-    // final form=formkey.currentState;
-    // if(form.validate()){
-    //   form.save();
-      
-    //   performlogin();
-    // } 
     Navigator.of(context).pushNamed('/CardPage');   
   }
   
@@ -48,11 +35,11 @@ class HomePage extends StatelessWidget{
           style: style,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: "Email",
+              hintText: "User Name",
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
           validator: (val)=> !val.contains('@')?'Invalid Email':null, 
-          onSaved: (val)=>_email=val,      
+               
         );
         final passwordField = TextFormField(
           obscureText: true,
@@ -63,7 +50,7 @@ class HomePage extends StatelessWidget{
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
           validator: (val)=> val.length<6?'Password Too Short':null,
-          onSaved: (val)=>_password=val,
+          
         );
         final loginButon = Material(
           elevation: 5.0,
@@ -126,45 +113,82 @@ class CardPage extends StatelessWidget{
         title: new Text('Choose Framework'),
         backgroundColor: Colors.deepOrange,
       ),
+      drawer: new Drawer(
+        child: ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: new Text("Vinoth"),
+              accountEmail: new Text("vinoth.sundaramoorthy@syncfusion.com"),
+              currentAccountPicture: new CircleAvatar(
+                backgroundImage: new NetworkImage('https://images.app.goo.gl/Sjy8wx5v8bWhMtk5A'),
+              ),
+            ),
+            new ListTile(
+              title: new Text("Angular"),
+              onTap: (){
+                Navigator.of(context).pushNamed('/CardPage'); 
+              },
+            ),
+            new ListTile(
+              title: new Text("Flutter"),
+              onTap: (){
+                Navigator.of(context).pushNamed('/');
+              },
+            ),
+            new ListTile(
+              title: new Text('React'),
+              onTap: (){
+                //Navigate to react page
+              },
+            ),
+            new ListTile(
+              title: new Text('About'),
+            ),
+            new ListTile(
+              title: new Text("LogOut"),
+              onTap: (){
+                Navigator.of(context).pushNamed('/');
+              },
+            ),
+          ],
+        ) 
+      ),
       body: new Container(
         child: new ListView.builder(
           itemCount: platform.length,
-          itemBuilder: (BuildContext context, int index) => buildPlatformCard(context, index)
+          itemBuilder: (BuildContext context, int index) => buildPlatformCard(context, index),
         ),
       ),
     );
   }
 
   Widget buildPlatformCard(BuildContext context, int index){
-    return new Container(
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Column(
-                  children: <Widget>[
-                    Text(platform[index], style: new TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold))
-                  ],),
-                ),
-              ),
-            );
+    return new GestureDetector(
+      child: new Card(
+        elevation: 5.0,
+        child: Padding(
+          padding: const EdgeInsets.all(50),
+          child: new Column(            
+          children: <Widget>[
+            Image.asset('assets/' + platform[index] + '.svg'),
+            Text(platform[index], style: new TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold))
+          ],),
+        ),
+      ),
+      onTap: (){
+        Navigator.of(context).pushNamed('/ContentPage');
+      } ,
+    );
   }
 }
 
-class ContentPage extends StatefulWidget {
-  ContentPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _ContentPageState createState() => _ContentPageState();
-}
-
-class _ContentPageState extends State<ContentPage> {
+class ContentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Syncfusion Tutorial Video"),
+        backgroundColor: Colors.deepOrange,
       ),
       drawer: new Drawer(
         child: ListView(
@@ -179,13 +203,13 @@ class _ContentPageState extends State<ContentPage> {
             new ListTile(
               title: new Text("Angular"),
               onTap: (){
-                //Navigate to Angular page
+                Navigator.of(context).pushNamed('/CardPage'); 
               },
             ),
             new ListTile(
               title: new Text("Flutter"),
               onTap: (){
-                //Navigate to flutter page
+                Navigator.of(context).pushNamed('/');
               },
             ),
             new ListTile(
@@ -196,7 +220,13 @@ class _ContentPageState extends State<ContentPage> {
             ),
             new ListTile(
               title: new Text('About'),
-            )
+            ),
+            new ListTile(
+              title: new Text("LogOut"),
+              onTap: (){
+                Navigator.of(context).pushNamed('/');
+              },
+            ),
           ],
         ) 
       ),
@@ -206,24 +236,7 @@ class _ContentPageState extends State<ContentPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const ListTile(
-              leading: Icon(Icons.album),
-              title: Text('Angular'),
-              dense: true,
-            ),
-            SizedBox(height: 10),
-            const ListTile(
-              //leading: Icon(Icon()),
-              title: Text('Flutter'),
-              dense: true,
-            ),
-            SizedBox(height: 10),
-            const ListTile(
-              //leading: Icon(Icon.album),
-              title: Text('React'),
-              dense: true,
-            ),
-            SizedBox(height: 10),
+            
           ],
         ),
       ),
