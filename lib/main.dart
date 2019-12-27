@@ -197,25 +197,28 @@ class ContentPage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
-              accountName: new Text("Vinoth"),
-              accountEmail: new Text("vinoth.sundaramoorthy@syncfusion.com"),
+              accountName: new Text("GrowthHacking"),
+              accountEmail: new Text("growthhacking@syncfusion.com"),
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: new NetworkImage('https://images.app.goo.gl/Sjy8wx5v8bWhMtk5A'),
               ),
             ),
             new ListTile(
+              leading: Image.asset('assets/angular.png'),
               title: new Text("Angular"),
               onTap: (){
                 Navigator.of(context).pushNamed('/ContentPage'); 
               },
             ),
             new ListTile(
+              leading: Image.asset('assets/flutter.png'),
               title: new Text("Flutter"),
               onTap: (){
                 Navigator.of(context).pushNamed('/');
               },
             ),
             new ListTile(
+              leading: Image.asset('assets/react.png'),
               title: new Text('React'),
               onTap: (){
                 //Navigate to react page
@@ -261,7 +264,7 @@ class ContentPage extends StatelessWidget {
             )
             
           ],
-        ),
+        )
       ),
     );
   }
