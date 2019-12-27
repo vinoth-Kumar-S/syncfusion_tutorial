@@ -1,16 +1,16 @@
-# syncfusion_tutorial
+# Syncfusion Tutorial Videos App
 
-A new Flutter project.
+A mobile app used to watch tutorial videos about Syncfusion components in multiple operating systems like Android and iOS.
 
-## Getting Started
+## Pre-requisite
+•	JAVA
+•	Android Studio and Emulator (Pixel 3 Excel with latest image)
+•	VS Code
+•	Flutter 
+•	Dart (Extension in VS Code)
 
-This project is a starting point for a Flutter application.
+Run this command to check whether all the pre-requisites are installed properly.
+flutter doctor 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Run the below command is used to run the sample
+flutter run  
